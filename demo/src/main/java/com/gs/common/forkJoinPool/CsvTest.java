@@ -1,4 +1,4 @@
-package com.gs.demo.forkJoinPool;
+package com.gs.common.forkJoinPool;
 
 import com.opencsv.CSVReader;
 

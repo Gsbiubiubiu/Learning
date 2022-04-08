@@ -13,6 +13,8 @@
     <modules>
         <module>console</module>
         <module>demo</module>
+        <module>dao</module>
+        <module>common</module>
     </modules>
     <properties>
         <spring.boot.version>2.4.3</spring.boot.version>
@@ -38,6 +40,24 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.16.6</version>
+            </dependency>
+
+<!--            json-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.61</version>
+            </dependency>
+<!--            apache common 工具-->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

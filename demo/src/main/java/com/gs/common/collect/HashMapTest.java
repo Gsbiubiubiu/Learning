@@ -1,4 +1,4 @@
-package com.gs.demo.collect;
+package com.gs.common.collect;
 
 import java.util.HashMap;
 import java.util.Map;
