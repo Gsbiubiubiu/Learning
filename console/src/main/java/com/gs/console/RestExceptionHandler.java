@@ -3,7 +3,6 @@ package com.gs.console;
 import com.alibaba.fastjson.JSON;
 import com.gs.common.web.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindException;

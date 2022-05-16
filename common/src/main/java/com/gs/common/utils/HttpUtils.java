@@ -38,9 +38,9 @@ public class HttpUtils {
     public static String execute(HttpRequestBase request) throws Exception{
         request.setConfig(config);
         try(CloseableHttpResponse response = httpClient.execute(request)) {
-            if(response.getStatusLine().getStatusCode() != 200){
-                throw new Exception("http请求异常");
-            }
+//            if(response.getStatusLine().getStatusCode() != 200){
+//                throw new Exception("http请求异常");
+//            }
             return StreamUtils.readToString(response.getEntity().getContent());
         }
     }
