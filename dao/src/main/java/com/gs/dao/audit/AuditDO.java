@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @User远
@@ -29,6 +30,19 @@ public class AuditDO extends BaseDO {
     private Integer status;
     private String desc;
     private String param;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuditDO auditDO = (AuditDO) o;
+        return Objects.equals(id, auditDO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     public final static Map<Integer, String> auditStaticMap = new HashMap<Integer, String>(){{
         put(Need_Audit, "待审核");

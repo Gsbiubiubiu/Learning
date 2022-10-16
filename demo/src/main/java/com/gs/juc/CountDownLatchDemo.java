@@ -7,6 +7,7 @@ package com.gs.juc;
 
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 确保所有人走完之后 拿着钥匙的人(better man)才会锁门
@@ -14,16 +15,35 @@ import java.util.concurrent.CountDownLatch;
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
 //        failTestOne();
-        //successfulCountDownLatch();
+//        successfulCountDownLatch();
         //test();
 
-        Map<Integer, String> map = new TreeMap<>();
-        map.put(1, "double");
-        map.put(3, "int");
-        map.put(2, "string");
-        map.put(21, "string");
-        map.put(10, "string");
-        System.out.println(map);
+//        Map<Integer, String> map = new TreeMap<>();
+//        map.put(1, "double");
+//        map.put(3, "int");
+//        map.put(2, "string");
+//        map.put(21, "string");
+//        map.put(10, "string");
+//        System.out.println(map);
+        int[] data = new int[100];
+        for (int i = 0; i < 100; i++) {
+            data[i] = i;
+        }
+        CountDownLatch countDownLatch = new CountDownLatch(10);
+        AtomicInteger num = new AtomicInteger();
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            new Thread(()->{
+                for (int j = 0; j < 10; j++) {
+                    System.out.println(Thread.currentThread().getName() + data[finalI*10+j]);
+                    num.addAndGet(1);
+                }
+                countDownLatch.countDown();
+            }, String.valueOf(i)).start();
+        }
+        countDownLatch.await();
+        System.out.println("总次数"+ num.toString());
+
     }
 
     /**
@@ -45,6 +65,7 @@ public class CountDownLatchDemo {
         countDownLatch.await();
         System.out.println("better man锁上了门");
     }
+
 
     private static void failTestOne() {
         for (int i = 0; i < 6; i++) {

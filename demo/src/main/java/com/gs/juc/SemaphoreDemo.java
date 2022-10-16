@@ -1,5 +1,9 @@
 package com.gs.juc;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +17,22 @@ import java.util.concurrent.TimeUnit;
  */
 public class SemaphoreDemo {
     public static void main(String[] args) {
-        successfulTest();
+//        successfulTest();
+        Map<String, Integer> map = new HashMap<>();
+        map.put("张三", 2);
+        map.put("李四", 1);
+        map.put("赵五", 3);
+        Set<Map.Entry<String, Integer>> entries = map.entrySet();
+
+        Object[] objects = entries.toArray();
+        System.out.println(objects);
+
+//        Integer[] objects = (Integer[]) map.values().toArray();
+//        Arrays.sort(objects);
+//        Map<String, Integer> mapNew = new HashMap<>();
+//        for (int i = 0; i < objects.length; i++) {
+//            mapNew.put(map.get)
+//        }
     }
 
     /**
