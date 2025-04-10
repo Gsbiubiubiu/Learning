@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
 //        failTestOne();
-//        successfulCountDownLatch();
+        successfulCountDownLatch();
         //test();
 
 //        Map<Integer, String> map = new TreeMap<>();
@@ -25,24 +25,24 @@ public class CountDownLatchDemo {
 //        map.put(21, "string");
 //        map.put(10, "string");
 //        System.out.println(map);
-        int[] data = new int[100];
-        for (int i = 0; i < 100; i++) {
-            data[i] = i;
-        }
-        CountDownLatch countDownLatch = new CountDownLatch(10);
-        AtomicInteger num = new AtomicInteger();
-        for (int i = 0; i < 10; i++) {
-            int finalI = i;
-            new Thread(()->{
-                for (int j = 0; j < 10; j++) {
-                    System.out.println(Thread.currentThread().getName() + data[finalI*10+j]);
-                    num.addAndGet(1);
-                }
-                countDownLatch.countDown();
-            }, String.valueOf(i)).start();
-        }
-        countDownLatch.await();
-        System.out.println("总次数"+ num.toString());
+//        int[] data = new int[100];
+//        for (int i = 0; i < 100; i++) {
+//            data[i] = i;
+//        }
+//        CountDownLatch countDownLatch = new CountDownLatch(10);
+//        AtomicInteger num = new AtomicInteger();
+//        for (int i = 0; i < 10; i++) {
+//            int finalI = i;
+//            new Thread(()->{
+//                for (int j = 0; j < 10; j++) {
+//                    System.out.println(Thread.currentThread().getName() + data[finalI*10+j]);
+//                    num.addAndGet(1);
+//                }
+//                countDownLatch.countDown();
+//            }, String.valueOf(i)).start();
+//        }
+//        countDownLatch.await();
+//        System.out.println("总次数"+ num.toString());
 
     }
 

@@ -1,0 +1,35 @@
+package com.gs.netty.nioandaio.bio;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
+
+/**
+ * @author: Gaos
+ * @Date: 2023-03-16 16:19
+ **/
+public class SocketChannelTest {
+    public static void main(String[] args) throws IOException {
+        SocketChannel socketChannel = SocketChannel.open();
+        socketChannel.connect(new InetSocketAddress("localhost", 8080));
+
+        // 发送请求
+        ByteBuffer buffer = ByteBuffer.wrap("1234567890".getBytes());
+        socketChannel.write(buffer);
+
+        // 读取响应
+        ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+        int num;
+        if((num = socketChannel.read(readBuffer)) > 0) {
+            readBuffer.flip();
+
+            byte[] re = new byte[num];
+            readBuffer.get(re);
+
+            String result = new String(re, StandardCharsets.UTF_8);
+            System.out.println("返回值：" + result);
+        }
+    }
+}

@@ -1,0 +1,41 @@
+package com.gs.designmodel.mediator.pro;
+
+
+/**
+ * @author: Gaos
+ * @Date: 2023-08-21 17:36
+ **/
+public class Test {
+
+    public static void main(String[] args) {
+        SyncMediator syncMediator = new SyncMediator();
+        MysqlDatabase mysqlDatabase = new MysqlDatabase(syncMediator);
+        RedisDatabase redisDatabase = new RedisDatabase(syncMediator);
+        EsDatabase esDatabase = new EsDatabase(syncMediator);
+
+        syncMediator.setMysqlDatabase(mysqlDatabase);
+        syncMediator.setRedisDatabase(redisDatabase);
+        syncMediator.setEsDatabase(esDatabase);
+
+        System.out.println("----mysql 添加数据 mysqlA 需要同步到另外两个数据库中----");
+        mysqlDatabase.sync("mysqlA");
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
+
+        System.out.println("----Redis 添加数据 redisB 无须同步到其他数据库----");
+        redisDatabase.sync("redisB");
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
+
+        System.out.println("----Es 添加数据 esC 需要同步到Mysql中");
+        esDatabase.sync("esC");
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
+    }
+}
